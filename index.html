@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora de Churrasco</title>
-    <link rel="stylesheet" type="text/css" href="./assets/style.css">
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
 </head>
 
 <body>
@@ -15,36 +16,54 @@
                 <h3>GAMA ACADEMY</h3>
             </div>
             <div class="texto2">
-                <h3>Calculadora de Churrasco</h3>
+                <h3><i>Calculadora de Churrasco</i></h3>
             </div>
         </header>
-        <main class="col-3">
-            <div class="comidas">
-                <p>Comidas</p>
-                <label for="fname">Mulheres</label>
-                <input type="number" name="numero" />
-                <label for="fname">Homens</label>
-                <input type="number" name="numero" />
-                <label for="fname">Crianças</label>
-                <input type="number" name="numero" />
+        <div class="bloco1">
+            <div class="col-4 bloco-comida">
+                <h3><b><i>Comidas </i></b></h3>
             </div>
-            <div class="acomp">
-                <input type="radio" id="male" name="gender" value="male">
-                <label for="male">Acompanhamentos</label><br>
+            <div class="col-4 bloco-pessoas">
+                <input type="number" id="nMulheres" name="nMulheres"><br><br>
+                <p>Mulheres</p>
             </div>
-            <div class="comidas">
-                <p>Bebidas</p>
-                <label for="fname">Quantos bebem cerveja?</label>
-                <input type="number" name="numero" />
-                <label for="fname">Quantos bebem refrigerante?</label>
-                <input type="number" name="numero" />
+            <div class="col-4 bloco-pessoas">
+                <input type="number" id="nHomens" name="nHomens"><br><br>
+                <p>Homens</p>
             </div>
+            <div class="col-4 bloco-pessoas">
+                <input type="number" id="nCriancas" name="nCriancas"><br><br>
+                <p>Crianças</p>
+            </div>
+        </div>
+        <div class="bloco2">
             <div>
-                <button type="button">Calcular</button>
+                <input type="checkbox" id="acomp" name="flagAcomp">
+                <label for="vehicle1">Acompanhamento</label><br>
             </div>
-        </main>
-
+        </div>
+        <div class="bloco3">
+            <div class="col-4 bloco-bebidas">
+                <h3><b><i>Bebidas </i></b></h3>
+            </div>
+            <div class="col-4 bloco-cerveja">
+                <input type="number" id="nCerv" name="Cerv"><br><br>
+                <p>Quantos bebem cerveja?</p>
+            </div>
+            <div class="col-4 bloco-refrigerente">
+                <input type="number" id="nRefri"" name="Refri"><br><br>
+                <p>Quantos bebem refrigerante?</p>
+            </div>            
+        </div>
+        <div id="calc" class="calcB">
+            <button type="button" onclick="calcular()">Calcular</button>
+        </div> 
+        <footer>
+            <div id="res">
+                
+            </div>
+        </footer>        
     </div>
+    <script src="custom.js"></script>
 </body>
-
 </html>
