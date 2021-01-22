@@ -126,7 +126,8 @@ div.col-4.bloco-bebidas {
 
 #res p {
     color: #f7f7f7;
-    font-size: 24px;
+    font-size: 24px;     
     text-align: center;
-    flex-direction: row;
+    padding-top: 1px;
 }
+
