@@ -1,52 +1,59 @@
-function calcular(){
-    //Pessoas
-    var m = document.getElementById (`nMulheres`)
-    var h = document.getElementById (`nHomens`)
-    var c = document.getElementById (`nCriancas`)
-    //Bebidas
-    var cerv = document.getElementById (`nCerv`)
-    var refr = document.getElementById (`nRefri`)
-    //Acompanhamento
-    var facomp = document.getElementById (`acomp`)
-    //Resultado
-    var res = document.getElementById (`res`)
+const botao = document.querySelector("#botaoCalcular")
 
-    if (m.value.length == 0 || h.value.length == 0 || c.value.length == 0 ) {
-        window.alert (`[ERRO] Faltam dados!`)
-    } else {
-        
-        // Converter em número
-        var mQnt = Number(m.value)
-        var hQnt = Number(h.value)
-        var cQnt = Number(c.value)
-        var cervQnt = Number(cerv.value)
-        var refrQnt = Number(refr.value)
+const calcularChurrasco = () => {
 
-        //Total de pessoas
-        pessTotal = mQnt + hQnt + cQnt
+    // Coleta valor dos inputs
+    const mulheres = document.getElementById('mulheres-qnt').value;
+    const homens = document.getElementById('homens-qnt').value;
+    const criancas = document.getElementById('criancas-qnt').value;
 
-        //Total de carne
-        carneTotal = (mQnt*500) + (hQnt*800) + (cQnt*300)
+    const acompanhamentos = document.getElementById('acompanhamentos').value;
+    const bebidasAlcoolicas = document.getElementById('bebidas-alcoolicas').value;
+    const bebidasNaoAlcoolicas = document.getElementById('bebidas-nao-alcoolicas').value;
 
-        //Total de Acompanhamentos
-        if (facomp.checked) {
-            acompTotal = (mQnt*200) + (hQnt*300) + (cQnt*100)
-            acompTotal = `${acompTotal}g`
-        } else { 
-            acompTotal = `Não haverá acompanhamentos`
-        }
 
-        //Total bebidas alcoolicas
-        nCerv = cervQnt*5
+    // Logica de valores por grama e multiplicacao da quantidade de pessoas
+    let totalCarne = mulheres * 150 + homens * 200 + criancas * 100
 
-        //Total de bebidas não alcoolicas
-        nRefr = refrQnt*3
+    // Soma da quantidade de pessoas
+    const totalPessoas = Number(mulheres) + Number(homens) + Number(criancas)
+    
+    // 50g de acompanhamento por pessoa
+    const totalAcompanhamento = acompanhamentos ? 50 * Number(totalPessoas) : 0
+    
+    // 400ml de bebida nao alcoolica para cada pessoa
+    const totalBebidasNaoAlcoolicas = bebidasNaoAlcoolicas ? 500 * Number(bebidasNaoAlcoolicas) : 0
+    
+    // 500ml de bebida alcoolica para cada pessoa :'D
+    const totalBebidasAlcoolicas = bebidasAlcoolicas ? 500 * Number(bebidasAlcoolicas) : 0
 
-        //Resultado
-        res.innerHTML = `<p>Total de pessoas: ${pessTotal}</p>`
-        res.innerHTML += `<p>Total de Carne: ${carneTotal}g</p>`
-        res.innerHTML += `<p>Acompanhamentos: ${acompTotal}</p>`
-        res.innerHTML += `<p>Bebidas alcóolicas: ${nCerv}L</p>`
-        res.innerHTML += `<p>Bebidas não alcóolicas: ${nRefr}L</p>`      
-    }    
+    
+
+    document.getElementById("total-carne").innerHTML = `${getValueMeasure(totalCarne, 1)}`
+    document.getElementById("total-pessoas").innerHTML = `${totalPessoas} pessoas`
+    document.getElementById("total-acompanhamento").innerHTML = `${getValueMeasure(totalAcompanhamento, 1)}`
+    document.getElementById("total-bebidas-nao-alcoolicas").innerHTML = `${getValueMeasure(totalBebidasNaoAlcoolicas, 2)}`
+    document.getElementById("total-bebidas-alcoolicas").innerHTML = `${getValueMeasure(totalBebidasAlcoolicas, 2)}`
+
 }
+
+
+/* Definição da medida utilizada a partir da quantidade medida em gramas
+type 1: comidas
+type 2: bebidas
+*/
+
+function getValueMeasure(val, type) {
+    switch(type) {
+        case 1: {
+            return val >= 1000 ? `${val/1000}kg` : `${val}g`
+            break;
+        }
+        case 2: {
+            return val >= 1000 ? `${val/1000}L` : `${val}ml`
+            break;
+        }
+    }
+}
+
+botao.addEventListener("click", calcularChurrasco)
